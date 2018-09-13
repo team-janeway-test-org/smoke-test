@@ -6,9 +6,19 @@ jobs:
     steps:
       - checkout
       - run: echo "A first hello"
+  build-again:
+    docker:
+      - image: circleci/ruby:2.4.1-jessie
+    steps:
+      - checkout
+      - run: echo "Second hello"  
 
 workflows:
   version: 2
   testing:
     jobs:
       - build
+  testing-again:
+    jobs:
+      - build-again    
+  
