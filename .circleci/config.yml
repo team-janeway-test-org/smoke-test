@@ -11,7 +11,7 @@ jobs:
       - image: circleci/ruby:2.4.1-jessie
     steps:
       - checkout
-      - run: echo "Second hello"  
+      - run: echo "Test 2 workflow status back to GH checks"
 
 workflows:
   version: 2
