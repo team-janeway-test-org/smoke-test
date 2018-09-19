@@ -18,7 +18,9 @@ workflows:
   testing:
     jobs:
       - build
+      - build-again
   testing-again:
     jobs:
       - build-again    
+      - build
   
