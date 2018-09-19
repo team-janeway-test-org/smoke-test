@@ -5,13 +5,13 @@ jobs:
       - image: circleci/ruby:2.4.1-jessie
     steps:
       - checkout
-      - run: echo "A first hello"
+      - run: 'sleep 30 && echo "A first hello"'
   build-again:
     docker:
       - image: circleci/ruby:2.4.1-jessie
     steps:
       - checkout
-      - run: echo "Second hello"  
+      - run: echo "Second hello"
 
 workflows:
   version: 2
@@ -21,6 +21,5 @@ workflows:
       - build-again
   testing-again:
     jobs:
-      - build-again    
+      - build-again
       - build
-  
