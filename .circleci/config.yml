@@ -17,7 +17,7 @@ jobs:
       - image: circleci/ruby:2.4.1-jessie
     steps:
       - checkout
-      - run: echo "Third hello"
+      - run: echo "Third hello" && exit 1
 
 workflows:
   version: 2
