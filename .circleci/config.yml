@@ -12,6 +12,12 @@ jobs:
     steps:
       - checkout
       - run: echo "Second hello"
+  build-third:
+    docker:
+      - image: circleci/ruby:2.4.1-jessie
+    steps:
+      - checkout
+      - run: echo "Third hello"
 
 workflows:
   version: 2
@@ -19,6 +25,7 @@ workflows:
     jobs:
       - build
       - build-again
+      - build-third
   testing-again:
     jobs:
       - build-again
