@@ -1,32 +1,24 @@
+# features/contexts
 version: 2
 jobs:
-  build:
+  test-context:
     docker:
-      - image: circleci/ruby:2.4.1-jessie
+      - image: "circleci/clojure:latest"
     steps:
-      - checkout
-      - run: 'sleep 30 && echo "A first hello"'
-  build-again:
-    docker:
-      - image: circleci/ruby:2.4.1-jessie
-    steps:
-      - checkout
-      - run: echo "Second hello"
-  build-third:
-    docker:
-      - image: circleci/ruby:2.4.1-jessie
-    steps:
-      - checkout
-      - run: echo "Third hello" && exit 1
+      - run:
+          name: Check for context variable
+          command: |
+            if [[ -n "${CONTEXT_SMOKE_TEST_RESULT}" ]]; then
+              echo "Context is present."
+              exit 0
+            else
+              echo "Context variable not present!"
+              exit 1
+            fi
 
 workflows:
   version: 2
-  testing:
+  my-workflow:
     jobs:
-      - build
-      - build-again
-      - build-third
-  testing-again:
-    jobs:
-      - build-again
-      - build
+      - test-context:
+          context: smoke-test
